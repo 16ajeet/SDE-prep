@@ -10,7 +10,7 @@ package Binary_Search;
 
 import java.util.Scanner;
 
-public class BinarySearch{
+/*  public class BinarySearch{
     public static void main(String[] args) {
         int[] arr = new int[6];
         Scanner sc = new Scanner(System.in);
@@ -46,6 +46,62 @@ public class BinarySearch{
             }
             else{
                 s = mid + 1;
+            }
+        }
+        return -1;
+    }
+}
+
+*/
+
+class BSOrderAgno{
+    public static void main(String[] args) {
+        int[] arr = new int[6];
+        Scanner sc = new Scanner(System.in);
+        System.out.println("enter elements of array ");
+        for (int i = 0; i < arr.length; i++) {
+           arr[i] = sc.nextInt(); 
+        }
+        System.out.println("enter target ");
+        int target = sc.nextInt();
+        sc.close();
+        int i = binarySearch(arr, 0, arr.length-1, target);
+        if (i < 0) {
+            System.out.println("target element not found ");
+        }
+        System.out.println("the target element is at " + i);
+    }
+
+    //ordr agnostic
+    private static int binarySearch (int[] arr, int s, int e, int target){
+        //for increasing order
+        if(arr[s] < arr[e]){
+            while (s <= e) {
+                int mid = (s + e)/2;
+                if(arr[mid] == target){
+                    return mid;
+                }
+                else if(arr[mid] > target){
+                    e = mid - 1;
+                }
+                else{
+                    s = mid + 1;
+                }
+            }
+        }
+        //decreasing
+        else{
+            while (s <= e) {
+                int mid = (s + e)/2;
+                if(arr[mid] == target){
+                    return mid;
+                }
+                else if(arr[mid] < target){
+                    e = mid - 1;
+                }
+                else{
+                    s = mid + 1;
+                }
             }
         }
         return -1;
